@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Menu Test</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1003;
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(0, 119, 182, 0.1);
+            height: 70px;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            position: relative;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0077B6;
+        }
+        
+        .nav-links {
+            display: none;
+        }
+        
+        .mobile-menu-toggle {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 28px !important;
+            height: 28px !important;
+            position: absolute !important;
+            right: 20px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            background: transparent !important;
+            border: none !important;
+            cursor: pointer !important;
+            padding: 0 !important;
+            z-index: 1002 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .mobile-menu-toggle:hover {
+            transform: translateY(-50%) scale(1.1) !important;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block !important;
+            width: 24px !important;
+            height: 3px !important;
+            background: #0077B6 !important;
+            margin: 3px 0 !important;
+            transition: all 0.3s ease !important;
+            border-radius: 2px !important;
+            transform-origin: center !important;
+        }
+        
+        .mobile-menu-toggle.active span {
+            background: #0077B6 !important;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px) !important;
+            margin: 0 !important;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0 !important;
+            transform: scale(0) !important;
+            margin: 0 !important;
+        }
+        
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px) !important;
+            margin: 0 !important;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 320px;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+            box-shadow: -10px 0 40px rgba(0, 119, 182, 0.15);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1004;
+            overflow-y: auto;
+            border-left: 4px solid #00B4D8;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 180, 216, 0.1) 100%);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1001;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu-nav {
+            padding: 100px 40px 40px;
+        }
+        
+        .mobile-menu-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .mobile-menu-nav .nav-link {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 20px 24px;
+            margin: 8px 0;
+            border-radius: 12px;
+            display: block;
+            color: #03045E;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        
+        .mobile-menu-nav .nav-link:hover {
+            color: white;
+            transform: translateX(8px) scale(1.02);
+            border-color: #00B4D8;
+            box-shadow: 0 8px 25px rgba(0, 119, 182, 0.2);
+        }
+        
+        .content {
+            padding: 100px 20px;
+            text-align: center;
+        }
+        
+        .test-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        #home { background: #f0f8ff; }
+        #services { background: #f5f5f5; }
+        #about { background: #fff0f5; }
+    </style>
+</head>
+<body>
+    <!-- Sticky Navbar -->
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-text">RD</div>
+                <span class="logo-text-full">Al-Rasheed Dental</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+        <nav class="mobile-menu-nav">
+            <ul>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="content">
+        <section id="home" class="test-section">
+            <div>
+                <h1>Home Section</h1>
+                <p>Test the mobile menu by clicking the hamburger icon</p>
+            </div>
+        </section>
+        
+        <section id="services" class="test-section">
+            <div>
+                <h1>Services Section</h1>
+                <p>Navigation should work smoothly</p>
+            </div>
+        </section>
+        
+        <section id="about" class="test-section">
+            <div>
+                <h1>About Section</h1>
+                <p>Menu should close when clicking links</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // ===== MOBILE MENU FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const menu = document.querySelector('.mobile-menu');
+            const overlay = document.querySelector('.mobile-menu-overlay');
+            const links = document.querySelectorAll('.mobile-menu-nav .nav-link');
+
+            if (toggle && menu && overlay) {
+                // Toggle menu
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isOpen = menu.classList.contains('active');
+                    
+                    toggle.classList.toggle('active');
+                    menu.classList.toggle('active');
+                    overlay.classList.toggle('active');
+                    
+                    if (!isOpen) {
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        document.body.style.overflow = '';
+                    }
+                });
+
+                // Close menu when clicking overlay
+                overlay.addEventListener('click', () => {
+                    toggle.classList.remove('active');
+                    menu.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+
+                // Close menu when clicking links
+                links.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        
+                        // Close menu
+                        toggle.classList.remove('active');
+                        menu.classList.remove('active');
+                        overlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                        
+                        // Smooth scroll to section
+                        if (targetSection) {
+                            const offsetTop = targetSection.offsetTop - 70;
+                            setTimeout(() => {
+                                window.scrollTo({
+                                    top: offsetTop,
+                                    behavior: 'smooth'
+                                });
+                            }, 300);
+                        }
+                    });
+                });
+
+                // Close menu on escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && menu.classList.contains('active')) {
+                        toggle.classList.remove('active');
+                        menu.classList.remove('active');
+                        overlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

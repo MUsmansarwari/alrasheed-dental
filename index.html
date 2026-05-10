@@ -11,7 +11,6 @@
     <meta property="og:description" content="Visit Al-Rasheed Medical & Dental Clinic in Walton Cantt, Lahore. Expert dental care by Dr. Shaheer Ahmed Butt – BDS, 10 years experience. Book your appointment today.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alrasheeddentalclinic.com">
-    <meta property="og:image" content="https://alrasheeddentalclinic.com/images/clinic-hero.jpg">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://alrasheeddentalclinic.com">
@@ -19,7 +18,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
@@ -55,8 +54,8 @@
     <header class="navbar">
         <nav class="nav-container">
             <div class="nav-logo">
-                <img src="images/logo.png" alt="Al-Rasheed Dental Clinic" class="logo-img">
-                <span class="logo-text">Al-Rasheed Dental</span>
+                <div class="logo-text">RD</div>
+                <span class="logo-text-full">Al-Rasheed Dental</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link">Home</a></li>
@@ -73,50 +72,54 @@
         </nav>
     </header>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close mobile menu">✕</button>
+        <nav class="mobile-menu-nav">
+            <ul>
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
+            <div class="hero-bg-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+            </div>
             <div class="hero-container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Expert Dental Care in Lahore</h1>
+                    <h1 class="hero-title">Lahore's Most Trusted Dental Clinic</h1>
                     <p class="hero-subtitle">Al-Rasheed Medical & Dental Clinic - Your trusted partner for healthy smiles</p>
-                    <div class="hero-doctor">
-                        <h2>Dr. Shaheer Ahmed Butt</h2>
-                        <p>BDS • 10 Years Experience • Walton Cantt Lahore</p>
-                    </div>
                     <div class="hero-cta">
                         <a href="#contact" class="btn btn-primary">Book Appointment</a>
-                        <a href="#services" class="btn btn-secondary">Our Services</a>
+                        <a href="tel:+923001234567" class="btn btn-secondary">Call Now</a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="images/doctor-hero.jpg" alt="Dr. Shaheer Ahmed Butt" class="hero-img">
+                <div class="hero-doctor-card">
+                    <div class="doctor-avatar">
+                        <span class="doctor-initials">SAB</span>
+                    </div>
+                    <h3>Dr. Shaheer Ahmed Butt</h3>
+                    <div class="doctor-rating">
+                        <span class="star">★★★★★</span>
+                    </div>
+                    <div class="experience-badge">10+ Years Experience</div>
+                    <p class="doctor-credentials">BDS • PMDC Verified</p>
                 </div>
             </div>
         </section>
 
-        <!-- Trust Bar -->
-        <section class="trust-bar">
-            <div class="trust-container">
-                <div class="trust-item">
-                    <div class="trust-number">10+</div>
-                    <div class="trust-label">Years Experience</div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-number">5000+</div>
-                    <div class="trust-label">Happy Patients</div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-number">98%</div>
-                    <div class="trust-label">Success Rate</div>
-                </div>
-                <div class="trust-item">
-                    <div class="trust-number">24/7</div>
-                    <div class="trust-label">Emergency Support</div>
-                </div>
-            </div>
-        </section>
-
+        
         <!-- Services Section -->
         <section id="services" class="services">
             <div class="container">
@@ -127,88 +130,125 @@
                 <div class="services-grid">
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="images/root-canal.png" alt="Root Canal Treatment">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 8C19.58 8 16 11.58 16 16C16 20.42 19.58 24 24 24C28.42 24 32 20.42 32 16C32 11.58 28.42 8 24 8ZM24 20C21.79 20 20 18.21 20 16C20 13.79 21.79 12 24 12C26.21 12 28 13.79 28 16C28 18.21 26.21 20 24 20Z" fill="#0077B6"/>
+                                <path d="M24 4C17.37 4 12 9.37 12 16V28C12 34.63 17.37 40 24 40C30.63 40 36 34.63 36 28V16C36 9.37 30.63 4 24 4ZM32 28C32 32.41 28.41 36 24 36C19.59 36 16 32.41 16 28V16C16 11.59 19.59 8 24 8C28.41 8 32 11.59 32 16V28Z" fill="#00B4D8"/>
+                            </svg>
                         </div>
-                        <h3 class="service-title">Root Canal Treatment</h3>
-                        <p class="service-description">Painless root canal therapy to save your natural teeth and relieve pain.</p>
+                        <h3>Root Canal Treatment</h3>
+                        <p>Painless root canal therapy to save infected teeth and relieve pain</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="images/implants.png" alt="Dental Implants">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 8L20 12L24 16L28 12L24 8Z" fill="#0077B6"/>
+                                <rect x="22" y="16" width="4" height="20" fill="#00B4D8"/>
+                                <circle cx="24" cy="40" r="4" fill="#0077B6"/>
+                            </svg>
                         </div>
-                        <h3 class="service-title">Dental Implants</h3>
-                        <p class="service-description">Permanent tooth replacement solutions that look and feel natural.</p>
+                        <h3>Dental Implants</h3>
+                        <p>Permanent tooth replacement solutions with natural-looking results</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="images/orthodontics.png" alt="Orthodontics">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 20C12 16.69 14.69 14 18 14H30C33.31 14 36 16.69 36 20V28C36 31.31 33.31 34 30 34H18C14.69 34 12 31.31 12 28V20Z" fill="none" stroke="#0077B6" stroke-width="2"/>
+                                <path d="M16 24H20M24 24H28M32 24H36" stroke="#00B4D8" stroke-width="2"/>
+                            </svg>
                         </div>
-                        <h3 class="service-title">Orthodontics</h3>
-                        <p class="service-description">Braces and aligners to straighten your teeth and improve your smile.</p>
+                        <h3>Orthodontics</h3>
+                        <p>Straighten your teeth with modern braces and aligners</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="images/whitening.png" alt="Teeth Whitening">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 8C17.37 8 12 13.37 12 20C12 26.63 17.37 32 24 32C30.63 32 36 26.63 36 20C36 13.37 30.63 8 24 8ZM24 28C19.59 28 16 24.41 16 20C16 15.59 19.59 12 24 12C28.41 12 32 15.59 32 20C32 24.41 28.41 28 24 28Z" fill="#0077B6"/>
+                                <path d="M20 16L28 24M28 16L20 24" stroke="#00B4D8" stroke-width="2"/>
+                            </svg>
                         </div>
-                        <h3 class="service-title">Teeth Whitening</h3>
-                        <p class="service-description">Professional teeth whitening treatments for a brighter, whiter smile.</p>
+                        <h3>Teeth Whitening</h3>
+                        <p>Brighten your smile with professional whitening treatments</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="images/crowns.png" alt="Crowns & Bridges">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24 8C20.69 8 18 10.69 18 14V20C18 23.31 20.69 26 24 26C27.31 26 30 23.31 30 20V14C30 10.69 27.31 8 24 8Z" fill="#0077B6"/>
+                                <path d="M14 20C14 26.63 18.37 32 25 32H27C33.63 32 38 26.63 38 20" stroke="#00B4D8" stroke-width="2"/>
+                                <circle cx="24" cy="14" r="2" fill="#00B4D8"/>
+                            </svg>
                         </div>
-                        <h3 class="service-title">Crowns & Bridges</h3>
-                        <p class="service-description">Restorative solutions to replace missing teeth and restore function.</p>
+                        <h3>Dental Crowns</h3>
+                        <p>Custom crowns to restore damaged teeth and improve appearance</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
-                            <img src="images/cleaning.png" alt="Dental Cleaning">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="12" y="16" width="4" height="16" fill="#0077B6"/>
+                                <rect x="20" y="12" width="4" height="20" fill="#00B4D8"/>
+                                <rect x="28" y="14" width="4" height="18" fill="#0077B6"/>
+                                <rect x="36" y="18" width="4" height="14" fill="#00B4D8"/>
+                            </svg>
                         </div>
-                        <h3 class="service-title">Dental Cleaning</h3>
-                        <p class="service-description">Professional cleaning and preventive care for optimal oral health.</p>
+                        <h3>Teeth Cleaning</h3>
+                        <p>Professional cleaning to maintain optimal oral health</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Doctor Section -->
+        <!-- About Section -->
         <section id="about" class="about">
             <div class="container">
-                <div class="about-content">
-                    <div class="about-image">
-                        <img src="images/doctor-about.jpg" alt="Dr. Shaheer Ahmed Butt" class="about-img">
+                <div class="about-grid">
+                    <div class="about-visual">
+                        <div class="dr-text">
+                            <span class="dr-initial">DR</span>
+                        </div>
+                        <div class="about-shapes">
+                            <div class="about-shape shape-1"></div>
+                            <div class="about-shape shape-2"></div>
+                        </div>
                     </div>
-                    <div class="about-text">
-                        <h2 class="section-title">Meet Dr. Shaheer Ahmed Butt</h2>
-                        <div class="doctor-credentials">
-                            <span class="credential-badge">BDS</span>
-                            <span class="credential-badge">10+ Years Experience</span>
-                            <span class="credential-badge">Walton Cantt Lahore</span>
+                    <div class="about-content">
+                        <h2>Meet Dr. Shaheer Ahmed Butt</h2>
+                        <div class="credentials-badges">
+                            <span class="badge">BDS</span>
+                            <span class="badge">10+ Years</span>
+                            <span class="badge badge-success">PMDC Verified</span>
                         </div>
-                        <p class="about-description">
-                            Dr. Shaheer Ahmed Butt is a highly experienced dental practitioner dedicated to providing exceptional dental care to the Lahore community. With over a decade of experience in general and specialized dentistry, he has successfully treated thousands of patients with compassion and expertise.
-                        </p>
-                        <p class="about-description">
-                            His expertise spans across various dental procedures including root canal treatments, dental implants, orthodontics, and cosmetic dentistry. Dr. Butt stays updated with the latest dental technologies and techniques to ensure his patients receive the best possible care.
-                        </p>
-                        <div class="about-highlights">
-                            <div class="highlight-item">
-                                <span class="highlight-icon">✓</span>
-                                <span>Advanced Dental Technology</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">✓</span>
-                                <span>Painless Treatment Methods</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">✓</span>
-                                <span>Affordable Dental Care</span>
-                            </div>
-                            <div class="highlight-item">
-                                <span class="highlight-icon">✓</span>
-                                <span>Personalized Patient Care</span>
-                            </div>
-                        </div>
+                        <p>Dr. Shaheer Ahmed Butt is a highly experienced dental practitioner dedicated to providing exceptional dental care to the Lahore community.</p>
+                        <ul class="about-highlights">
+                            <li>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0L12.5 7.5L20 10L12.5 12.5L10 20L7.5 12.5L0 10L7.5 7.5L10 0Z" fill="#06D6A0"/>
+                                </svg>
+                                Expert in Root Canal Therapy
+                            </li>
+                            <li>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0L12.5 7.5L20 10L12.5 12.5L10 20L7.5 12.5L0 10L7.5 7.5L10 0Z" fill="#06D6A0"/>
+                                </svg>
+                                Advanced Dental Implant Procedures
+                            </li>
+                            <li>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0L12.5 7.5L20 10L12.5 12.5L10 20L7.5 12.5L0 10L7.5 7.5L10 0Z" fill="#06D6A0"/>
+                                </svg>
+                                Painless Treatment Methods
+                            </li>
+                            <li>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0L12.5 7.5L20 10L12.5 12.5L10 20L7.5 12.5L0 10L7.5 7.5L10 0Z" fill="#06D6A0"/>
+                                </svg>
+                                Affordable Dental Care
+                            </li>
+                            <li>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 0L12.5 7.5L20 10L12.5 12.5L10 20L7.5 12.5L0 10L7.5 7.5L10 0Z" fill="#06D6A0"/>
+                                </svg>
+                                Personalized Patient Care
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -218,243 +258,219 @@
         <section id="reviews" class="reviews">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">What Our Patients Say</h2>
-                    <p class="section-subtitle">Real reviews from our valued patients</p>
+                    <div class="section-badge">Testimonials</div>
+                    <h2 class="section-title">What our patients say</h2>
+                    <p class="section-subtitle">See what our valued patients have to say about their experience</p>
                 </div>
-                <div class="reviews-grid">
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info">
-                                <img src="images/patient1.jpg" alt="Patient" class="reviewer-avatar">
-                                <div>
-                                    <h4 class="reviewer-name">Ahmed Hassan</h4>
-                                    <div class="review-rating">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="review-date">2 weeks ago</span>
+                
+                <div class="testimonials-container">
+                    <div class="testimonials-column" data-duration="15">
+                        <div class="testimonials-track">
+                            <!-- Testimonials will be dynamically inserted here -->
                         </div>
-                        <p class="review-text">
-                            "Excellent dental care! Dr. Butt is very professional and the root canal treatment was completely painless. Highly recommend Al-Rasheed Dental Clinic."
-                        </p>
                     </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info">
-                                <img src="images/patient2.jpg" alt="Patient" class="reviewer-avatar">
-                                <div>
-                                    <h4 class="reviewer-name">Fatima Khan</h4>
-                                    <div class="review-rating">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="review-date">1 month ago</span>
+                    <div class="testimonials-column" data-duration="19">
+                        <div class="testimonials-track">
+                            <!-- Testimonials will be dynamically inserted here -->
                         </div>
-                        <p class="review-text">
-                            "Got my dental implants here and I couldn't be happier! The results are amazing and Dr. Butt's expertise is unmatched. The clinic is clean and modern."
-                        </p>
                     </div>
-                    <div class="review-card">
-                        <div class="review-header">
-                            <div class="reviewer-info">
-                                <img src="images/patient3.jpg" alt="Patient" class="reviewer-avatar">
-                                <div>
-                                    <h4 class="reviewer-name">Muhammad Ali</h4>
-                                    <div class="review-rating">
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                        <span class="star">★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="review-date">1 month ago</span>
+                    <div class="testimonials-column" data-duration="17">
+                        <div class="testimonials-track">
+                            <!-- Testimonials will be dynamically inserted here -->
                         </div>
-                        <p class="review-text">
-                            "Great experience with teeth whitening treatment. The staff is very cooperative and Dr. Butt explains everything in detail. Best dental clinic in Walton Cantt!"
-                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Appointment / Contact Form Section -->
+        <!-- Contact Section -->
         <section id="contact" class="contact">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Book Your Appointment</h2>
-                    <p class="section-subtitle">Get in touch with us for expert dental care</p>
+                <div class="contact-header">
+                    <h2>Book Your Appointment</h2>
+                    <p>Schedule your visit with Dr. Shaheer Ahmed Butt for expert dental care</p>
                 </div>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Clinic Information</h3>
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <img src="images/location-icon.png" alt="Location">
-                            </div>
-                            <div class="info-text">
-                                <h4>Address</h4>
-                                <p>Walton Cantt, Lahore, Pakistan</p>
-                            </div>
+                <div class="appointment-container">
+                    <div class="appointment-visual">
+                        <div class="appointment-icon">
+                            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="40" cy="40" r="38" stroke="white" stroke-width="2"/>
+                                <path d="M25 30C25 26.68 27.68 24 31 24H49C52.32 24 55 26.68 55 30V50C55 53.32 52.32 56 49 56H31C27.68 56 25 53.32 25 50V30Z" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="M30 32H50M30 40H50M30 48H45" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                         </div>
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <img src="images/phone-icon.png" alt="Phone">
+                        <div class="appointment-benefits">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#06D6A0"/>
+                                    </svg>
+                                </div>
+                                <div class="benefit-text">
+                                    <h4>Expert Care</h4>
+                                    <p>10+ years experience</p>
+                                </div>
                             </div>
-                            <div class="info-text">
-                                <h4>Phone</h4>
-                                <p>+92-300-1234567</p>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#06D6A0"/>
+                                    </svg>
+                                </div>
+                                <div class="benefit-text">
+                                    <h4>Painless Treatment</h4>
+                                    <p>Advanced techniques</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <img src="images/time-icon.png" alt="Hours">
-                            </div>
-                            <div class="info-text">
-                                <h4>Opening Hours</h4>
-                                <p>Monday - Saturday: 6:00 PM - 10:00 PM</p>
-                                <p>Sunday: Closed</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <img src="images/price-icon.png" alt="Price">
-                            </div>
-                            <div class="info-text">
-                                <h4>Price Range</h4>
-                                <p>Starting from PKR 1500</p>
-                            </div>
-                        </div>
-                        <div class="map-container">
-                            <h4>Location</h4>
-                            <div class="map-wrapper">
-                                <iframe 
-                                    src="https://maps.google.com/maps?q=31.486631,74.3774405&z=15&output=embed" 
-                                    width="100%" 
-                                    height="250" 
-                                    style="border:0; border-radius: var(--border-radius);" 
-                                    allowfullscreen="" 
-                                    loading="lazy" 
-                                    referrerpolicy="no-referrer-when-downgrade">
-                                </iframe>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#06D6A0"/>
+                                    </svg>
+                                </div>
+                                <div class="benefit-text">
+                                    <h4>Affordable Prices</h4>
+                                    <p>Starting from PKR 1500</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="appointment-form">
-                        <form id="appointmentForm">
+                    <div class="appointment-form-wrapper">
+                        <form id="appointmentForm" class="appointment-form">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="name">Full Name *</label>
                                     <input type="text" id="name" name="name" required>
+                                    <label for="name">Full Name</label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Phone Number *</label>
                                     <input type="tel" id="phone" name="phone" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" name="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="service">Service Required *</label>
-                                    <select id="service" name="service" required>
-                                        <option value="">Select a service</option>
-                                        <option value="root-canal">Root Canal Treatment</option>
-                                        <option value="implants">Dental Implants</option>
-                                        <option value="orthodontics">Orthodontics</option>
-                                        <option value="whitening">Teeth Whitening</option>
-                                        <option value="crowns">Crowns & Bridges</option>
-                                        <option value="cleaning">Dental Cleaning</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                                    <label for="phone">Phone Number</label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="date">Preferred Date *</label>
-                                <input type="date" id="date" name="date" required>
+                                <input type="email" id="email" name="email" required>
+                                <label for="email">Email Address</label>
                             </div>
                             <div class="form-group">
-                                <label for="message">Additional Message</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Select Service</option>
+                                    <option value="root-canal">Root Canal Treatment</option>
+                                    <option value="implants">Dental Implants</option>
+                                    <option value="orthodontics">Orthodontics</option>
+                                    <option value="whitening">Teeth Whitening</option>
+                                    <option value="crowns">Dental Crowns</option>
+                                    <option value="cleaning">Teeth Cleaning</option>
+                                </select>
+                                <label for="service">Service Required</label>
+                            </div>
+                            <div class="form-group">
                                 <textarea id="message" name="message" rows="4" placeholder="Tell us about your dental concerns..."></textarea>
+                                <label for="message">Additional Message</label>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-full">Book Appointment</button>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-large">Book Appointment</button>
+                                <p class="form-note">We'll confirm your appointment within 24 hours</p>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Contact Info Section -->
+        <section class="contact-info-section">
+            <div class="container">
+                <div class="contact-header">
+                    <h2>Get in Touch</h2>
+                </div>
+                <div class="contact-info-cards">
+                    <a href="https://maps.google.com/?q=Al-Rasheed+Medical+Dental+Clinic+Walton+Cantt+Lahore" target="_blank" class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9S10.62 6.5 12 6.5S14.5 7.62 14.5 9S13.38 11.5 12 11.5Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Location</h4>
+                            <p>Al-Rasheed Medical & Dental Clinic<br>Walton Cantt, Lahore</p>
+                        </div>
+                    </a>
+                    <a href="tel:+923001234567" class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Phone</h4>
+                            <p>+92-300-1234567<br>+92-42-1234567</p>
+                        </div>
+                    </a>
+                    <a href="mailto:info@alrasheeddental.com" class="contact-info-card">
+                        <div class="contact-info-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="contact-info-content">
+                            <h4>Email</h4>
+                            <p>info@alrasheeddental.com<br>dr.shaheer@alrasheeddental.com</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Location Section -->
+    <section class="location-section">
+        <div class="container">
+            <div class="location-header">
+                <h2>Find Us</h2>
+                <p>Visit Al-Rasheed Medical & Dental Clinic in Walton Cantt, Lahore</p>
+            </div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3402.9666369!2d74.3774405!3d31.486631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDI5JzE5LjkiTiA3NMKwMjInNDcuOCJF!5e0!3m2!1sen!2s!4v1234567890" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0; border-radius: 16px;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="images/logo.png" alt="Al-Rasheed Dental Clinic" class="footer-logo-img">
-                        <h3>Al-Rasheed Medical & Dental Clinic</h3>
-                    </div>
-                    <p>Your trusted partner for expert dental care in Lahore. Providing quality dental services with compassion and excellence.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#reviews">Reviews</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="#services">Root Canal Treatment</a></li>
-                        <li><a href="#services">Dental Implants</a></li>
-                        <li><a href="#services">Orthodontics</a></li>
-                        <li><a href="#services">Teeth Whitening</a></li>
-                        <li><a href="#services">Crowns & Bridges</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <div class="footer-contact">
-                        <p><strong>Address:</strong> Walton Cantt, Lahore, Pakistan</p>
-                        <p><strong>Phone:</strong> +92-300-1234567</p>
-                        <p><strong>Hours:</strong> Mon-Sat 6:00 PM - 10:00 PM</p>
-                        <p><strong>Email:</strong> info@alrasheeddental.com</p>
-                    </div>
+                <div class="footer-logo">
+                    <div class="logo-text">RD</div>
+                    <span class="footer-logo-text">Al-Rasheed Dental</span>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Al-Rasheed Medical & Dental Clinic. All rights reserved.</p>
+                <p>&copy; 2026 Al-Rasheed Dental Clinic. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/923360434394" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#25D366"/>
-                <path d="M12 7C9.24 7 7 9.24 7 12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12C17 9.24 14.76 7 12 7ZM12 15C10.34 15 9 13.66 9 12C9 10.34 10.34 9 12 9C13.66 9 15 10.34 15 12C15 13.66 13.66 15 12 15Z" fill="white"/>
-                <path d="M12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z" fill="white"/>
-            </svg>
-        </a>
-    </div>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" title="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 14L12 9L17 14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/923360434394" target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#25D366"/>
+            <path d="M12 7C9.24 7 7 9.24 7 12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12C17 9.24 14.76 7 12 7ZM12 15C10.34 15 9 13.66 9 12C9 10.34 10.34 9 12 9C13.66 9 15 10.34 15 12C15 13.66 13.66 15 12 15Z" fill="white"/>
+        </svg>
+    </a>
 
     <!-- JavaScript -->
     <script src="script.js"></script>

@@ -1,16 +1,210 @@
-// ===== DOM ELEMENTS =====
-const navbar = document.querySelector('.navbar');
-const navLinks = document.querySelectorAll('.nav-link');
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-const heroContent = document.querySelector('.hero-content');
-const heroTitle = document.querySelector('.hero-title');
-const heroCta = document.querySelector('.hero-cta');
-const trustNumbers = document.querySelectorAll('.trust-number');
-const serviceCards = document.querySelectorAll('.service-card');
-const aboutSection = document.querySelector('.about');
-const reviewCards = document.querySelectorAll('.review-card');
-const reviewsSection = document.querySelector('.reviews');
-const appointmentForm = document.getElementById('appointmentForm');
+// ===== TESTIMONIALS DATA =====
+const testimonialsData = [
+    {
+        quote: "The support team is exceptional, guiding us through treatment options and providing ongoing assistance, ensuring complete satisfaction.",
+        name: "Mohammad Ali",
+        title: "Customer Support Lead",
+        avatar: "MA"
+    },
+    {
+        quote: "This dental clinic revolutionized my smile! The root canal treatment was completely painless and the staff was incredibly supportive throughout the process.",
+        name: "Aisha Khan",
+        title: "Marketing Manager",
+        avatar: "AK"
+    },
+    {
+        quote: "I had a fantastic experience at this clinic. The dentists are highly skilled, and the entire team made me feel comfortable and well-cared for.",
+        name: "Usman Tariq",
+        title: "Software Engineer",
+        avatar: "UT"
+    },
+    {
+        quote: "The best dental care I've ever received! From the friendly reception to the thorough examination, everything was top-notch.",
+        name: "Fatima Zahra",
+        title: "HR Director",
+        avatar: "FZ"
+    },
+    {
+        quote: "Highly recommend this clinic for anyone seeking professional and compassionate dental services. They truly care about their patients.",
+        name: "Ali Hassan",
+        title: "Financial Analyst",
+        avatar: "AH"
+    },
+    {
+        quote: "My fear of dentists is gone! The team here is incredibly gentle and understanding. I actually look forward to my appointments now.",
+        name: "Sana Malik",
+        title: "Project Manager",
+        avatar: "SM"
+    },
+    {
+        quote: "State-of-the-art equipment and a very knowledgeable staff. I'm impressed with the quality of service and the results of my treatment.",
+        name: "Imran Ahmed",
+        title: "Operations Manager",
+        avatar: "IA"
+    },
+    {
+        quote: "A truly pleasant experience from start to finish. The clinic is clean, modern, and the staff is exceptionally friendly and professional.",
+        name: "Zara Begum",
+        title: "Art Director",
+        avatar: "ZB"
+    },
+    {
+        quote: "I appreciate the detailed explanations and personalized treatment plan. I felt fully informed and confident in my dental care decisions.",
+        name: "Hamza Nadeem",
+        title: "Business Consultant",
+        avatar: "HN"
+    }
+];
+
+// Split testimonials into columns
+const firstColumn = testimonialsData.slice(0, 3);
+const secondColumn = testimonialsData.slice(3, 6);
+const thirdColumn = testimonialsData.slice(6, 9);
+
+// ===== POPULATE TESTIMONIALS =====
+const populateTestimonials = () => {
+    const columns = document.querySelectorAll('.testimonials-column');
+    const columnData = [firstColumn, secondColumn, thirdColumn];
+    
+    columns.forEach((column, index) => {
+        const track = column.querySelector('.testimonials-track');
+        const data = columnData[index] || [];
+        
+        // Create two sets for seamless looping
+        const testimonialSets = [data, data];
+        
+        testimonialSets.forEach(set => {
+            set.forEach((testimonial, i) => {
+                const card = document.createElement('div');
+                card.className = 'testimonial-card';
+                card.style.animationDelay = `${i * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="testimonial-content">
+                        "${testimonial.quote}"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">${testimonial.avatar}</div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">${testimonial.name}</div>
+                            <div class="testimonial-title">${testimonial.title}</div>
+                            <div class="testimonial-rating">
+                                ${'★'.repeat(5)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                track.appendChild(card);
+            });
+        });
+    });
+};
+
+// Initialize testimonials when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded');
+    populateTestimonials();
+    
+    // Get DOM elements after testimonials are populated
+    window.navbar = document.querySelector('.navbar');
+    window.navLinks = document.querySelectorAll('.nav-link');
+    window.mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    window.heroContent = document.querySelector('.hero-content');
+    window.heroTitle = document.querySelector('.hero-title');
+    window.heroCta = document.querySelector('.hero-cta');
+    window.heroSection = document.querySelector('.hero');
+    window.serviceCards = document.querySelectorAll('.service-card');
+    window.aboutSection = document.querySelector('.about');
+    window.reviewCards = document.querySelectorAll('.testimonial-card');
+    window.reviewsSection = document.querySelector('.reviews');
+    window.appointmentForm = document.getElementById('appointmentForm');
+    window.backToTopBtn = document.getElementById('backToTop');
+    window.contactCards = document.querySelectorAll('.contact-card');
+    
+    // Setup mobile menu functionality
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const menu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    const closeButton = document.querySelector('.mobile-menu-close');
+    const links = document.querySelectorAll('.mobile-menu-nav .nav-link');
+
+    if (toggle && menu && overlay) {
+        // Toggle menu
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isOpen = menu.classList.contains('active');
+            
+            toggle.classList.toggle('active');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            if (!isOpen) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Close menu when clicking overlay
+        overlay.addEventListener('click', () => {
+            toggle.classList.remove('active');
+            menu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking close button
+        if (closeButton) {
+            closeButton.addEventListener('click', () => {
+                toggle.classList.remove('active');
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Close menu when clicking links
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                // Close menu
+                toggle.classList.remove('active');
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Smooth scroll to section
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 70;
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                }
+            });
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menu.classList.contains('active')) {
+                toggle.classList.remove('active');
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Setup observer after DOM is ready
+    setupObserver();
+});
 
 // ===== NAVBAR SCROLL EFFECT =====
 window.addEventListener('scroll', () => {
@@ -21,445 +215,416 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// ===== SMOOTH SCROLLING =====
+// ===== SMOOTH SCROLL FOR NAVIGATION =====
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
         
         if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+            // Check if mobile (no header) or desktop (header present)
+            const isMobile = window.innerWidth <= 768;
+            const offsetTop = targetSection.offsetTop - (isMobile ? 0 : 80);
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
-            
-            // Close mobile menu if open
-            closeMobileMenu();
         }
     });
 });
 
-// ===== MOBILE MENU =====
-function toggleMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    
-    navLinks.classList.toggle('mobile-active');
-    mobileMenuToggle.classList.toggle('active');
-}
 
-function closeMobileMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    
-    navLinks.classList.remove('mobile-active');
-    mobileMenuToggle.classList.remove('active');
-}
-
-mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-
-// ===== HERO ANIMATION =====
-window.addEventListener('load', () => {
-    // Animate hero title
-    setTimeout(() => {
-        heroTitle.style.opacity = '0';
-        heroTitle.style.transform = 'translateY(30px)';
-        heroTitle.style.transition = 'all 0.8s ease-out';
-        
-        setTimeout(() => {
-            heroTitle.style.opacity = '1';
-            heroTitle.style.transform = 'translateY(0)';
-        }, 100);
-    }, 0);
-    
-    // Animate hero CTA buttons
-    setTimeout(() => {
-        heroCta.style.opacity = '0';
-        heroCta.style.transform = 'translateY(30px)';
-        heroCta.style.transition = 'all 0.8s ease-out';
-        
-        setTimeout(() => {
-            heroCta.style.opacity = '1';
-            heroCta.style.transform = 'translateY(0)';
-        }, 200);
-    }, 200);
-});
-
-// ===== SCROLL REVEAL =====
-const revealElements = document.querySelectorAll('.reveal, .service-card, .about, .review-card');
-
-const revealOnScroll = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '0';
-            entry.target.style.transform = 'translateY(20px)';
-            entry.target.style.transition = 'all 0.6s ease-out';
-            
-            setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }, 100);
-            
-            revealOnScroll.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.1
-});
-
-// Add reveal class to elements and observe them
-serviceCards.forEach(card => card.classList.add('reveal'));
-aboutSection.classList.add('reveal');
-reviewCards.forEach(card => card.classList.add('reveal'));
-
-revealElements.forEach(element => {
-    revealOnScroll.observe(element);
-});
-
-// ===== REVIEW LOADING SIMULATION =====
-function simulateReviewLoading() {
-    const reviewsGrid = document.querySelector('.reviews-grid');
-    
-    // Create skeleton loaders
-    reviewsGrid.innerHTML = '';
-    
-    for (let i = 0; i < 3; i++) {
-        const skeleton = document.createElement('div');
-        skeleton.className = 'review-card skeleton';
-        skeleton.style.height = '200px';
-        skeleton.style.borderRadius = '12px';
-        reviewsGrid.appendChild(skeleton);
-    }
-    
-    // Simulate loading delay
-    setTimeout(() => {
-        // Remove skeletons
-        reviewsGrid.innerHTML = '';
-        
-        // Add actual review cards
-        const reviewData = [
-            {
-                name: 'Ahmed Hassan',
-                date: '2 weeks ago',
-                text: 'Excellent dental care! Dr. Butt is very professional and the root canal treatment was completely painless. Highly recommend Al-Rasheed Dental Clinic.'
-            },
-            {
-                name: 'Fatima Khan',
-                date: '1 month ago',
-                text: 'Got my dental implants here and I couldn\'t be happier! The results are amazing and Dr. Butt\'s expertise is unmatched. The clinic is clean and modern.'
-            },
-            {
-                name: 'Muhammad Ali',
-                date: '1 month ago',
-                text: 'Great experience with teeth whitening treatment. The staff is very cooperative and Dr. Butt explains everything in detail. Best dental clinic in Walton Cantt!'
-            }
-        ];
-        
-        reviewData.forEach((review, index) => {
-            const reviewCard = document.createElement('div');
-            reviewCard.className = 'review-card';
-            reviewCard.style.opacity = '0';
-            reviewCard.style.transform = 'translateY(20px)';
-            reviewCard.style.transition = 'all 0.6s ease-out';
-            
-            reviewCard.innerHTML = `
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <div class="reviewer-avatar">${review.name.split(' ').map(n => n[0]).join('')}</div>
-                        <div>
-                            <h4 class="reviewer-name">${review.name}</h4>
-                            <div class="review-rating">
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                                <span class="star">★</span>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="review-date">${review.date}</span>
-                </div>
-                <p class="review-text">"${review.text}"</p>
-            `;
-            
-            reviewsGrid.appendChild(reviewCard);
-            
-            // Animate in with stagger
-            setTimeout(() => {
-                reviewCard.style.opacity = '1';
-                reviewCard.style.transform = 'translateY(0)';
-            }, index * 200);
-        });
-        
-        // Add success message
-        const successMessage = document.createElement('div');
-        successMessage.style.textAlign = 'center';
-        successMessage.style.marginTop = '20px';
-        successMessage.style.color = '#10B981';
-        successMessage.style.fontSize = '14px';
-        successMessage.style.fontWeight = '600';
-        successMessage.innerHTML = '✓ Reviews loaded from Google';
-        successMessage.style.opacity = '0';
-        successMessage.style.transition = 'opacity 0.6s ease-out';
-        
-        reviewsSection.appendChild(successMessage);
-        
-        setTimeout(() => {
-            successMessage.style.opacity = '1';
-        }, 800);
-        
-    }, 1500);
-}
-
-// Start review loading simulation on page load
-window.addEventListener('load', simulateReviewLoading);
-
-// ===== COUNTER ANIMATION =====
-function animateCounter(element, target, duration = 2000) {
+// ===== ANIMATE COUNTERS =====
+const animateCounter = (element, target, duration = 2000) => {
     const start = 0;
     const increment = target / (duration / 16);
     let current = start;
     
-    const timer = setInterval(() => {
+    // Clear any existing timer
+    if (element.timer) {
+        clearInterval(element.timer);
+    }
+    
+    element.timer = setInterval(() => {
         current += increment;
         if (current >= target) {
             current = target;
-            clearInterval(timer);
+            clearInterval(element.timer);
         }
         
-        // Handle different number formats
-        if (element.textContent.includes('+')) {
-            element.textContent = Math.floor(current) + '+';
-        } else if (element.textContent.includes('%')) {
-            element.textContent = Math.floor(current) + '%';
-        } else if (element.textContent.includes('/')) {
-            element.textContent = '24/7';
+        // Format number with commas for thousands
+        if (target >= 1000) {
+            element.textContent = Math.floor(current).toLocaleString();
         } else {
             element.textContent = Math.floor(current);
         }
     }, 16);
-}
+};
 
-const trustBarObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            trustNumbers.forEach((number, index) => {
-                const text = number.textContent;
-                let targetValue = 0;
+// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+const setupObserver = () => {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
                 
-                if (text.includes('10+')) targetValue = 10;
-                else if (text.includes('5000+')) targetValue = 5000;
-                else if (text.includes('98%')) targetValue = 98;
-                else if (text.includes('24/7')) {
-                    number.textContent = '24/7';
-                    return;
+                                
+                // Animate service cards
+                if (element.classList.contains('service-card')) {
+                    element.style.animation = 'slideUp 0.6s ease-out forwards';
                 }
                 
-                setTimeout(() => {
-                    animateCounter(number, targetValue);
-                }, index * 200);
-            });
-            
-            trustBarObserver.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.5
-});
+                // Animate about section
+                if (element.classList.contains('about-visual')) {
+                    element.style.animation = 'slideUp 0.8s ease-out forwards';
+                }
+                
+                // Animate review cards
+                if (element.classList.contains('review-card')) {
+                    element.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+                
+                // Animate contact cards
+                if (element.classList.contains('contact-card')) {
+                    element.style.animation = 'slideUp 0.6s ease-out forwards';
+                }
+            }
+        });
+    }, observerOptions);
 
-const trustBar = document.querySelector('.trust-bar');
-if (trustBar) {
-    trustBarObserver.observe(trustBar);
-}
+        serviceCards.forEach(card => observer.observe(card));
+    if (aboutSection) {
+        const aboutVisual = aboutSection.querySelector('.about-visual');
+        if (aboutVisual) observer.observe(aboutVisual);
+    }
+    reviewCards.forEach(card => observer.observe(card));
+    document.querySelectorAll('.contact-card').forEach(card => observer.observe(card));
+};
 
-// ===== FORM VALIDATION =====
-appointmentForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+// ===== HERO ANIMATION ON LOAD =====
+window.addEventListener('load', () => {
     
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const service = document.getElementById('service').value;
-    const date = document.getElementById('date').value;
-    const message = document.getElementById('message').value.trim();
-    
-    // Validation
-    let isValid = true;
-    let errorMessage = '';
-    
-    if (name.length < 2) {
-        isValid = false;
-        errorMessage = 'Please enter a valid name (at least 2 characters)';
-    } else if (phone.length < 10) {
-        isValid = false;
-        errorMessage = 'Please enter a valid phone number (at least 10 digits)';
-    } else if (!service) {
-        isValid = false;
-        errorMessage = 'Please select a service';
-    } else if (!date) {
-        isValid = false;
-        errorMessage = 'Please select a preferred date';
+    // Animate hero content
+    if (heroContent) {
+        heroContent.style.opacity = '0';
+        heroContent.style.transform = 'translateY(50px)';
+        
+        setTimeout(() => {
+            heroContent.style.transition = 'all 1s ease-out';
+            heroContent.style.opacity = '1';
+            heroContent.style.transform = 'translateY(0)';
+        }, 100);
     }
     
-    // Remove existing error messages
-    const existingError = appointmentForm.querySelector('.error-message');
-    const existingSuccess = appointmentForm.querySelector('.success-message');
-    if (existingError) existingError.remove();
-    if (existingSuccess) existingSuccess.remove();
+    // Animate hero title letter by letter
+    if (heroTitle) {
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        text.split('').forEach((letter, index) => {
+            const span = document.createElement('span');
+            span.textContent = letter;
+            span.style.opacity = '0';
+            span.style.transform = 'translateY(20px)';
+            span.style.display = 'inline-block';
+            span.style.transition = `all 0.5s ease-out ${index * 0.05}s`;
+            heroTitle.appendChild(span);
+            
+            setTimeout(() => {
+                span.style.opacity = '1';
+                span.style.transform = 'translateY(0)';
+            }, 500 + index * 50);
+        });
+    }
     
-    if (!isValid) {
-        // Show error message
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.style.color = '#EF4444';
-        errorDiv.style.fontSize = '14px';
-        errorDiv.style.marginTop = '10px';
-        errorDiv.style.padding = '10px';
-        errorDiv.style.backgroundColor = '#FEE2E2';
-        errorDiv.style.borderRadius = '8px';
-        errorDiv.style.border = '1px solid #FCA5A5';
-        errorDiv.textContent = errorMessage;
+    // Animate hero CTA buttons
+    if (heroCta) {
+        const buttons = heroCta.querySelectorAll('.btn');
+        buttons.forEach((btn, index) => {
+            btn.style.opacity = '0';
+            btn.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                btn.style.transition = 'all 0.6s ease-out';
+                btn.style.opacity = '1';
+                btn.style.transform = 'translateY(0)';
+            }, 1000 + index * 200);
+        });
+    }
+});
+
+// ===== FORM HANDLING =====
+if (appointmentForm) {
+    appointmentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
         
-        appointmentForm.appendChild(errorDiv);
+        // Get form data
+        const formData = new FormData(appointmentForm);
+        const data = Object.fromEntries(formData);
         
-        // Auto-remove error after 5 seconds
+        // Show loading state
+        const submitBtn = appointmentForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Booking...';
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.style.background = 'var(--gradient)';
+        submitBtn.style.color = 'white';
+        
+        // Simulate API call
         setTimeout(() => {
-            errorDiv.remove();
-        }, 5000);
+            // Show success message
+            showNotification('Appointment booked successfully! We will contact you soon.', 'success');
+            
+            // Reset form
+            appointmentForm.reset();
+            
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
+            submitBtn.style.background = '';
+            submitBtn.style.color = '';
+        }, 2000);
+    });
+}
+
+// ===== FORM BUTTON STYLING FIX =====
+const formButtons = document.querySelectorAll('#appointmentForm button[type="submit"]');
+formButtons.forEach(btn => {
+    btn.style.background = 'var(--gradient)';
+    btn.style.color = 'white';
+    btn.style.border = 'none';
+    
+    btn.addEventListener('mouseenter', () => {
+        btn.style.transform = 'translateY(-2px)';
+        btn.style.boxShadow = 'var(--shadow-medium)';
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+        btn.style.boxShadow = '';
+    });
+});
+
+// ===== NOTIFICATION SYSTEM =====
+const showNotification = (message, type = 'info') => {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    
+    // Add styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease-out;
+            max-width: 400px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
         
+        .notification-success {
+            background: linear-gradient(135deg, #06D6A0, #05a67f);
+        }
+        
+        .notification-error {
+            background: linear-gradient(135deg, #e63946, #d62828);
+        }
+        
+        .notification-info {
+            background: linear-gradient(135deg, #0077B6, #005f8a);
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(notification);
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease-out';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 5000);
+};
+
+// ===== HERO MOUSE ANIMATION =====
+if (heroSection) {
+    heroSection.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { width, height } = heroSection.getBoundingClientRect();
+        const x = (clientX / width) * 100;
+        const y = (clientY / height) * 100;
+        
+        // Update gradient position based on mouse movement
+        heroSection.style.background = `radial-gradient(circle at ${x}% ${y}%, #00B4D8 0%, #0077B6 50%, #03045E 100%)`;
+    });
+    
+    // Reset gradient on mouse leave
+    heroSection.addEventListener('mouseleave', () => {
+        heroSection.style.background = 'var(--gradient)';
+    });
+}
+
+// ===== BACK TO TOP BUTTON =====
+window.addEventListener('scroll', () => {
+    // Don't show back to top button on mobile devices
+    if (window.innerWidth <= 768) {
+        backToTopBtn.classList.remove('visible');
         return;
     }
     
-    // Show success message
-    const successDiv = document.createElement('div');
-    successDiv.className = 'success-message';
-    successDiv.style.color = '#10B981';
-    successDiv.style.fontSize = '16px';
-    successDiv.style.marginTop = '20px';
-    successDiv.style.padding = '16px';
-    successDiv.style.backgroundColor = '#D1FAE5';
-    successDiv.style.borderRadius = '8px';
-    successDiv.style.border = '1px solid #6EE7B7';
-    successDiv.style.fontWeight = '600';
-    successDiv.style.textAlign = 'center';
-    successDiv.innerHTML = '✓ Appointment request sent! We\'ll call you back shortly.';
-    
-    appointmentForm.appendChild(successDiv);
-    
-    // Reset form
-    appointmentForm.reset();
-    
-    // Remove success message after 10 seconds
-    setTimeout(() => {
-        successDiv.remove();
-    }, 10000);
-    
-    // Log form data (in real implementation, this would be sent to a server)
-    console.log('Appointment Request:', {
-        name,
-        phone,
-        email,
-        service,
-        date,
-        message
-    });
-});
-
-// ===== ACTIVE NAV HIGHLIGHTING =====
-const sections = document.querySelectorAll('section[id]');
-
-function updateActiveNav() {
-    const scrollY = window.scrollY;
-    
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100; // Account for navbar height
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
-        
-        if (navLink) {
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLink.classList.add('active');
-            } else {
-                navLink.classList.remove('active');
-            }
-        }
-    });
-}
-
-window.addEventListener('scroll', updateActiveNav);
-
-// Add CSS for active nav link
-const activeNavStyle = document.createElement('style');
-activeNavStyle.textContent = `
-    .nav-link.active {
-        color: var(--primary-color) !important;
-    }
-    
-    .nav-link.active::after {
-        width: 100% !important;
-    }
-    
-    @media (max-width: 768px) {
-        .nav-links {
-            position: fixed;
-            top: 80px;
-            left: 0;
-            right: 0;
-            background: var(--white);
-            flex-direction: column;
-            padding: 20px;
-            box-shadow: var(--shadow-soft);
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-        
-        .nav-links.mobile-active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-    }
-`;
-document.head.appendChild(activeNavStyle);
-
-// Initialize active nav on load
-updateActiveNav();
-
-// ===== PAGE TITLE TAB ANIMATION =====
-const originalTitle = "Al-Rasheed Dental Clinic Lahore | Dr. Shaheer Ahmed Butt | Root Canal, Implants & More";
-const alternateTitle = "📅 Book Now – Al-Rasheed Dental";
-let titleIndex = 0;
-let isPageFocused = true;
-
-document.addEventListener('visibilitychange', () => {
-    isPageFocused = !document.hidden;
-    if (isPageFocused) {
-        document.title = originalTitle;
-        clearInterval(titleInterval);
+    if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
     } else {
-        startTitleAnimation();
+        backToTopBtn.classList.remove('visible');
     }
 });
 
-function startTitleAnimation() {
-    titleInterval = setInterval(() => {
-        document.title = titleIndex % 2 === 0 ? alternateTitle : originalTitle;
-        titleIndex++;
-    }, 4000);
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// ===== CONTACT CARDS CLICK HANDLING =====
+contactCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+        // Prevent default if it's already a link
+        if (card.tagName === 'A') {
+            return;
+        }
+        
+        // Add click feedback
+        card.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            card.style.transform = '';
+        }, 150);
+    });
+});
+
+// ===== SERVICE CARD HOVER EFFECT =====
+serviceCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-8px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// ===== DOCTOR CARD FLOAT ANIMATION =====
+const doctorCard = document.querySelector('.hero-doctor-card');
+if (doctorCard) {
+    let floatDirection = 1;
+    let currentPosition = 0;
+    
+    setInterval(() => {
+        currentPosition += 0.5 * floatDirection;
+        
+        if (currentPosition >= 10 || currentPosition <= -10) {
+            floatDirection *= -1;
+        }
+        
+        doctorCard.style.transform = `translateY(${currentPosition}px)`;
+    }, 50);
 }
+
+// ===== FORM INPUT ANIMATIONS =====
+document.querySelectorAll('.form-group input, .form-group textarea, .form-group select').forEach(input => {
+    input.addEventListener('focus', () => {
+        input.parentElement.classList.add('focused');
+    });
+    
+    input.addEventListener('blur', () => {
+        if (!input.value) {
+            input.parentElement.classList.remove('focused');
+        }
+    });
+    
+    // Check initial state
+    if (input.value) {
+        input.parentElement.classList.add('focused');
+    }
+});
+
+// ===== WHATSAPP BUTTON HOVER EFFECT =====
+const whatsappBtn = document.querySelector('.whatsapp-btn');
+if (whatsappBtn) {
+    whatsappBtn.addEventListener('mouseenter', () => {
+        whatsappBtn.style.transform = 'scale(1.1) rotate(5deg)';
+    });
+    
+    whatsappBtn.addEventListener('mouseleave', () => {
+        whatsappBtn.style.transform = 'scale(1) rotate(0deg)';
+    });
+}
+
+// ===== LAZY LOADING FOR IMAGES (if any are added later) =====
+const lazyImages = document.querySelectorAll('img[data-src]');
+const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            imageObserver.unobserve(img);
+        }
+    });
+});
+
+lazyImages.forEach(img => imageObserver.observe(img));
+
+
+// ===== PERFORMANCE OPTIMIZATION =====
+// Debounce scroll events
+let scrollTimeout;
+window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(() => {
+        // Scroll-based animations here
+    }, 16);
+});
+
+// ===== CONSOLE MESSAGE =====
+console.log('%c🦷 Al-Rasheed Dental Clinic - Premium Dental Care in Lahore', 'font-size: 20px; font-weight: bold; color: #0077B6;');
+console.log('%cWebsite designed and developed with modern 2025 standards', 'font-size: 14px; color: #00B4D8;');
